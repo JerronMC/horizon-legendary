@@ -82,7 +82,7 @@ pages.login=async()=>{if(me())return location.hash='#/account';let up=false;cons
    if(!/^[A-Za-z0-9_]{3,24}$/.test(n))return bad('Username: 3 to 24 letters, numbers or underscores.');if(pw.length<6)return bad('Password needs at least 6 characters.');b.disabled=true;
    try{const k=n.toLowerCase(),u=await get('users',k);if(up){if(u){b.disabled=false;return bad('That username is taken.')}const salt=crypto.getRandomValues(new Uint8Array(16));await put('users',{name:k,display:n,salt:b64(salt),hash:await hash(pw,salt),created:Date.now(),bio:'',avatar:'',site:'',github:'',author:n})}
    else if(!u||u.hash!==await hash(pw,unb64(u.salt))){b.disabled=false;return bad('Wrong username or password.')}
-   localStorage.setItem('hz_user',k);toast(up?'Welcome to Mod Horizon!':'Welcome back!');location.hash='#/account'}catch{b.disabled=false;bad('Could not use browser storage here.')}}};draw()};
+   localStorage.setItem('hz_user',k);toast(up?'Welcome to Horizon Mod Hub!':'Welcome back!');location.hash='#/account'}catch{b.disabled=false;bad('Could not use browser storage here.')}}};draw()};
 /* ---------- account ---------- */
 let AT='overview';
 const initial=u=>(u.display||u.name||'?')[0].toUpperCase();
